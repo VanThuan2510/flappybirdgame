@@ -1,0 +1,35 @@
+package flappybird.controller;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import flappybird.view.Game;
+
+public class GameAdapter extends KeyAdapter {
+	private Controller controller;
+	private Game game;
+
+	public GameAdapter(Game game) {
+		controller = new Controller();
+		this.game = game;
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			game.restartGame();
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		controller.controllerReleased(game, e);
+
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+
+	}
+
+}

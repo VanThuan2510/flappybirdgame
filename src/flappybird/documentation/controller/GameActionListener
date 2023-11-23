@@ -1,0 +1,22 @@
+package flappybird.controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import flappybird.view.Game;
+
+public class GameActionListener implements ActionListener {
+	private Controller controller;
+	private Game game;
+
+	public GameActionListener(Game game) {
+		controller = new Controller();
+		this.game = game;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		controller.controllerPressed(game, e);
+	}
+
+}

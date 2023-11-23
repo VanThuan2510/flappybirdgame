@@ -1,0 +1,38 @@
+package flappybird.model.object;
+
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.image.ImageObserver;
+
+import flappybird.model.proxyimage.ProxyImage;
+
+public class Tube extends GameObject {
+	private ProxyImage proxyImage;
+
+	public Tube(int x, int y) {
+		super(x, y);
+		if (proxyImage == null) { // if the image has not been loaded
+			proxyImage = new ProxyImage("/flappybird/model/images/TubeBody.png"); // Load the image
+		}
+		this.image = proxyImage.loadImage().getImage(); // Get the image
+		this.width = image.getWidth(null); // Set the width of the image
+		this.height = image.getHeight(null); // Set the height of the image
+	}
+
+	@Override
+	public void tick() {
+		this.x -= dx; // this x = this.x - dx; 1400 - 5
+	}
+
+	@Override
+	public void render(Graphics2D g, ImageObserver obs) {
+		g.drawImage(image, x, y, obs);
+	}
+//	public abstract boolean drawImage(Image img, int x, int y,
+//            ImageObserver observer);
+
+	public Rectangle getBounds() {
+		return new Rectangle(x, y, width, height);
+	}
+
+}

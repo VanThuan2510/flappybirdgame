@@ -1,0 +1,43 @@
+package flappybird.controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.JOptionPane;
+
+import flappybird.view.Game;
+
+public class Controller implements IStrategy {
+
+	@Override
+	public void controllerReleased(Game game, KeyEvent keyevent) {
+		try {
+			if (keyevent.getKeyCode() == KeyEvent.VK_SPACE) {
+				game.getBird().moveUp();
+			} else if (keyevent.getKeyCode() == KeyEvent.VK_I) {
+				game.getBird().moveLeft();
+			} else if (keyevent.getKeyCode() == KeyEvent.VK_U) {
+				game.getBird().moveRight();
+			}
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(game, "Press Enter For The Game", "Message", JOptionPane.WARNING_MESSAGE);
+		}
+
+	}
+
+	@Override
+	public void controllerPressed(Game game, ActionEvent e) {
+		if (e.getActionCommand().equals("Easy")) {
+			game.getTubeColumn().setAddPoint(7);
+			game.getTubeColumn().setNarrowPoint(7);
+		} else if (e.getActionCommand().equals("Medium")) {
+			game.getTubeColumn().setAddPoint(4);
+			game.getTubeColumn().setNarrowPoint(4);
+		} else if (e.getActionCommand().equals("Hard")) {
+			game.getTubeColumn().setAddPoint(2);
+			game.getTubeColumn().setNarrowPoint(2);
+		}
+
+	}
+
+}

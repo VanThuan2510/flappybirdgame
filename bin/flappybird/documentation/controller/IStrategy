@@ -1,0 +1,12 @@
+package flappybird.controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
+import flappybird.view.Game;
+
+public interface IStrategy {
+	public void controllerReleased(Game game, KeyEvent keyevent);
+
+	public void controllerPressed(Game game, ActionEvent e);
+}

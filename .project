@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>MyFlappyBird</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>src/flappybird/model/images/TubeBody.png</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/JAVA/Database/Bird/images/TubeBody.png</locationURI>
+		</link>
+		<link>
+			<name>src/flappybird/model/images/background.jpg</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/JAVA/Database/Bird/images/background.jpg</locationURI>
+		</link>
+		<link>
+			<name>src/flappybird/model/images/bird.png</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/JAVA/Database/Bird/images/bird.png</locationURI>
+		</link>
+	</linkedResources>
+	<variableList>
+		<variable>
+			<name>copy_PROJECT_LOC</name>
+			<value>$%7BPARENT-1-PROJECT_LOC%7D/MyBird</value>
+		</variable>
+	</variableList>
+</projectDescription>

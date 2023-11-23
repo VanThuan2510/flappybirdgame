@@ -1,0 +1,115 @@
+package flappybird.model.object;
+
+import java.awt.Graphics2D;
+import java.awt.image.ImageObserver;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+// TubeColumn class is used to create a wall object in the game and to move it around the screen
+public class TubeColumn {
+	private int base = flappybird.view.Window.HEIGHT - 60; // 800 - 60 = 740
+	// the base height of the tube
+	private List<Tube> tubes;
+	private Random random;
+	private int point = 0;
+	private int speed = 5;
+	private int pointChangeSpeed = speed;
+	private int addPoint = 2;
+	private int narrowPoint = 5;
+
+	public TubeColumn() {
+		tubes = new ArrayList<Tube>();
+		random = new Random();
+		initTubeWalls();
+	}
+
+	private void initTubeWalls() {
+		int last = base; // Tube width
+		int randWay = random.nextInt(10); // random number from 0 to 9
+		// Create the first wall in the game and set the position of the wall to the
+		// right sight of the screen
+
+		for (int i = 0; i < 60; i++) {
+			Tube tempTube = new Tube(1400, last); // Create a new Tube Object
+			tempTube.setDx(speed); // Set the speed of the tube wall;
+			last = tempTube.getY() - tempTube.getHeight(); // Set the position y of the wall
+			// last = 740 - 40 = 700 Column 1, i = 1
+			// last = 700 - 40 = 660 Column 2, i = 2
+			// last = 660 - 40 = 620 Column 3, i = 3
+			// last = 620 - 40 = 580 Column 4, i = 4
+			// last = 740 - 40 = 700 Column 5, i = 5
+			// last = 700 - 40 = 660 Column 12, i = 12
+			// last = 660 - 40 = 620 Column 13, i = 13
+			// last = 620 - 40 = 580 Column 14, i = 14
+			// last = 740 - 40 = 700 Column 15, i = 15
+			// last = 700 - 40 = 660 Column 16, i = 16
+			// last = 660 - 40 = 620 Column 17, i = 17
+			// last = 620 - 40 = 580 Column 18, i = 18
+			// last = 620 - 40 = 580 Column 19, i = 19
+
+			if (i < randWay || i > randWay + this.narrowPoint) { // if the wall is not in the middle of the screen
+				tubes.add(tempTube); // Add the wall the array of Tube Objects
+			}
+			// up tube // down tube random
+//			if ( i < randWay || i > randWay + 4) { // if the wall is not in the middle of the screen
+//				tubes.add(tempTube); // Add the wall the array of Tube Objects
+//			}
+		}
+	}
+
+	public void setNarrowPoint(int narrowPoint) {
+		this.narrowPoint = narrowPoint;
+	}
+
+	public void setAddPoint(int addPoint) {
+		this.addPoint = addPoint;
+	}
+
+	public int getNarrowPoint() {
+		return narrowPoint;
+	}
+
+	// Method used to check the position of the walls and to create the new wall
+	public void tick() {
+		for (int i = 0; i < tubes.size(); i++) { // Loop through the array of the Tube objects
+			tubes.get(i).tick();
+
+			if (tubes.get(i).getX() < 5) { // If the array of Tube objects is empty
+				tubes.remove(tubes.get(i)); // Increase the score by 1
+			}
+		}
+
+		if (tubes.isEmpty()) { // If the array of Tube objects is Empty
+			this.point += 1; // Increase the score by 1;
+			if (pointChangeSpeed == point) {
+				this.speed += 1; // Increase the speed of the wall by 1
+				pointChangeSpeed += addPoint; // changespeed between 1 and 7
+			}
+			initTubeWalls(); // Create a new wall
+		}
+	}
+
+	public void render(Graphics2D g, ImageObserver obs) {
+		for (int i = 0; i < tubes.size(); i++) {
+			tubes.get(i).render(g, obs);
+		}
+	}
+
+	public List<Tube> getTubes() {
+		return tubes;
+	}
+
+	public void setTubes(List<Tube> tubes) {
+		this.tubes = tubes;
+	}
+
+	public int getPoint() {
+		return point;
+	}
+
+	public void setPoint(int points) {
+		this.point = points;
+	}
+
+}
